@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 85px;
+  }
+  body {
+    @apply bg-white text-dark antialiased;
+    font-family: var(--font-jakarta), system-ui, sans-serif;
+  }
+}
+
+.kicker {
+  @apply inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-forest mb-3;
+}
+
+.kicker::before {
+  content: '';
+  @apply w-5 h-0.5 bg-earth inline-block;
+}
+
+/* Custom styling for range input */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #9b6c42;
+  border: 3px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  background: #173426;
+}
