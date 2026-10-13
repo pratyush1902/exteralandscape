@@ -8,6 +8,7 @@ import WhyUs from '@/components/WhyUs';
 import Process from '@/components/Process';
 import Team from '@/components/Team';
 import Portfolio from '@/components/Portfolio';
+import Testimonials from '@/components/Testimonials';
 import FaqAccordion from '@/components/FaqAccordion';
 import BookingForm from '@/components/BookingForm';
 import Footer from '@/components/Footer';
@@ -27,6 +28,7 @@ export default function Home() {
         <Process />
         <Team />
         <Portfolio />
+        <Testimonials />
         <FaqAccordion />
         <BookingForm />
       </main>

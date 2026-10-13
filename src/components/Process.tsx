@@ -36,25 +36,25 @@ export default function Process() {
   ];
 
   return (
-    <section className="py-20 lg:py-24 bg-white" id="process">
+    <section className="py-14 sm:py-20 lg:py-24 bg-white" id="process">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
           <span className="kicker">How We Deliver</span>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-forest mb-4">
+          <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-bold text-forest mb-3 sm:mb-4">
             From Consultation to Handover
           </h2>
-          <p className="text-gray-600 text-base sm:text-lg">
+          <p className="text-gray-600 text-sm sm:text-base lg:text-lg">
             A structured, professional process designed to respect your timeline, budget, and personal aesthetic.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6">
           {steps.map((st) => {
             const IconComp = st.icon;
             return (
               <div
                 key={st.num}
-                className="bg-white border border-gray-200 rounded-2xl p-6 hover:border-emerald hover:shadow-lg transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between"
+                className="bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 hover:border-emerald hover:shadow-lg transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">

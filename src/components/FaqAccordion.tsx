@@ -2,30 +2,31 @@
 
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
+import { SITE_CONFIG } from '@/config/site';
 
 export default function FaqAccordion() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const faqs = [
     {
-      q: 'What is the approximate cost of landscaping a garden in Patna?',
-      a: 'Turnkey landscape development generally ranges from ₹80 to ₹180 per sq. ft. depending on features: grass selection (Korean carpet vs. Bermuda), automatic drip irrigation, stone pathways, and plant density. You can use our cost calculator above for a quick ballpark estimate.',
+      q: 'How much does garden landscaping cost in Patna?',
+      a: 'Turnkey work generally costs ₹80 to ₹180 per sq. ft. The final rate depends on grass type (Korean Carpet or Bermuda), drip irrigation, stone pathways and plant density. Use the calculator for a quick estimate; after a site visit you receive an itemized BOQ.',
     },
     {
-      q: 'How do you ensure plants survive Patna’s extreme summer temperatures?',
-      a: 'Led by Saurabh Raj (B.Sc Agriculture), we only specify climate-adapted varieties that thrive in Bihar’s alluvial soil and high summer heat. We enrich the soil with organic compost, apply root mulch to conserve moisture, and set up automated drip lines so plants never suffer dehydration shock.',
+      q: 'How do you choose plants that survive Patna’s summer heat?',
+      a: 'Led by Saurabh Raj (B.Sc Agriculture), we select climate-adapted species suited to Bihar’s alluvial soil and high summer temperatures. We prepare the soil with organic compost, apply mulch to retain moisture, and recommend automatic drip lines so roots receive steady hydration.',
     },
     {
       q: 'Can you install an automatic drip irrigation system on an existing lawn?',
-      a: 'Yes! We can retrofit automated drip lines and popup micro-sprinklers into existing gardens with minimal surface disruption. This saves up to 60% water, keeps foliage healthy, and runs on an automated timer even when you are traveling.',
+      a: 'Yes. We can install automated drip lines and popup sprinklers into existing gardens with minimal disturbance. Separate zones for lawn and shrubs run on an automatic timer, designed to cut water use significantly even when you are away.',
     },
     {
-      q: 'What is included in the transparent itemized BOQ?',
-      a: 'Our Bill of Quantities (BOQ) specifies exact botanical names, plant heights, grass square footage, plumbing pipes, soil truckloads, fertilizer quantity, and labor days. You know exactly what is going into your ground with zero hidden costs.',
+      q: 'What is included in the itemized BOQ?',
+      a: 'After a site visit, our Bill of Quantities (BOQ) lists plant varieties and heights, grass square footage, soil preparation materials, piping, stone pavers and labour scope clearly so you can review every part of the estimate.',
     },
     {
-      q: 'How do I schedule an on-site consultation?',
-      a: 'Simply fill out the form below or message us directly on WhatsApp at +91 93153 59040. We will schedule a site visit in Patna or nearby districts, inspect the soil and sun exposure, and discuss your design aspirations.',
+      q: 'How do I book a site visit?',
+      a: `Fill out the contact form below or message us on WhatsApp at ${SITE_CONFIG.phoneDisplay}. Saurabh or Gaurav personally visit your site in Patna or nearby areas, check sunlight and drainage, and prepare your concept and BOQ.`,
     },
   ];
 
@@ -34,14 +35,14 @@ export default function FaqAccordion() {
   };
 
   return (
-    <section className="py-20 lg:py-24 bg-cream" id="faq">
+    <section className="py-14 sm:py-20 lg:py-24 bg-cream" id="faq">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-12">
+        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
           <span className="kicker">Got Questions?</span>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-forest mb-4">
+          <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-bold text-forest mb-3 sm:mb-4">
             Frequently Asked Questions
           </h2>
-          <p className="text-gray-600 text-sm sm:text-base">
+          <p className="text-gray-600 text-xs sm:text-base">
             Clear answers regarding budgets, plant choices, timelines, and maintenance.
           </p>
         </div>
@@ -56,17 +57,17 @@ export default function FaqAccordion() {
               >
                 <button
                   onClick={() => toggle(index)}
-                  className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-forest hover:text-emerald transition-colors"
+                  className="w-full text-left p-4 sm:p-6 flex items-center justify-between gap-3 font-bold text-sm sm:text-base text-forest hover:text-earth transition-colors"
                 >
                   <span>{faq.q}</span>
                   <ChevronDown
-                    className={`w-5 h-5 text-emerald shrink-0 transition-transform duration-200 ${
+                    className={`w-4 h-4 sm:w-5 sm:h-5 text-forest shrink-0 transition-transform duration-200 ${
                       isOpen ? 'rotate-180' : ''
                     }`}
                   />
                 </button>
                 {isOpen && (
-                  <div className="px-5 sm:px-6 pb-6 text-xs sm:text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
+                  <div className="px-4 sm:px-6 pb-4 sm:pb-6 text-xs sm:text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
                     {faq.a}
                   </div>
                 )}

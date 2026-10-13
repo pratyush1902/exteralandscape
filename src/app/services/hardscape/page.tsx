@@ -10,6 +10,7 @@ import {
   ArrowRight, CheckCircle2, ChevronRight, Hammer, HardHat, ShieldCheck, 
   Layers, Footprints, MessageSquare, Ruler
 } from 'lucide-react';
+import { SITE_CONFIG, getWhatsAppUrl } from '@/config/site';
 
 export default function HardscapePage() {
   const [selectedStone, setSelectedStone] = useState<'kandla' | 'jodhpur' | 'cobbles' | 'pavers'>('kandla');
@@ -17,47 +18,47 @@ export default function HardscapePage() {
   const stonesData = {
     kandla: {
       name: 'Kandla Grey Natural Sandstone',
-      subtitle: 'Cool Underfoot & Timeless Minimalist Elegance',
-      image: 'https://images.unsplash.com/photo-1590682680695-43b964a3ae17?auto=format&fit=crop&w=800&q=80',
+      subtitle: 'Cool Underfoot & Clean Minimalist Look',
+      image: '/images/stone-walkway.jpg',
       finish: 'Shot-blasted / Calibrated non-slip',
       thickness: '25mm – 35mm calibrated',
-      heatResist: 'High (Stays cool during 44°C Patna summers)',
+      heatResist: 'High (Stays comfortable underfoot in summer)',
       loadBearing: 'Pedestrian & Outdoor Dining Walkways',
       rate: '₹140 – ₹195 per sq. ft. (Supply & Laying)',
-      desc: 'Uniform grey texture with subtle quartzite sparkles. Does not absorb excessive thermal radiation, making it comfortable for barefoot morning strolls.',
+      desc: 'Uniform grey texture with subtle natural grain. Absorbs less daytime heat than dark stone, making it comfortable for garden walkways.',
     },
     jodhpur: {
       name: 'Jodhpur Teakwood Sandstone',
-      subtitle: 'Warm Golden Veins & Heritage Royal Character',
-      image: 'https://images.unsplash.com/photo-1558904541-efa8c4a08931?auto=format&fit=crop&w=800&q=80',
+      subtitle: 'Warm Golden Veins & Classic Character',
+      image: '/images/courtyard-garden.jpg',
       finish: 'Honed / Sawn textured',
       thickness: '30mm calibrated',
       heatResist: 'High (Natural sandstone insulation)',
       loadBearing: 'Villa Patios, Gazebo Floors & Courtyards',
       rate: '₹165 – ₹220 per sq. ft. (Supply & Laying)',
-      desc: 'Distinctive natural wood-grain patterns in warm amber and gold. Pairs breathtakingly with emerald lawn turf and evening warm lighting.',
+      desc: 'Natural wood-grain patterns in warm amber and sandstone tones. Pairs cleanly with green lawn turf and warm evening lighting.',
     },
     cobbles: {
       name: 'Tumbled Basalt & Granite Cobbles',
-      subtitle: 'Heavy-Duty European Driveway & Border Blocks',
-      image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80',
+      subtitle: 'Heavy-Duty Driveway & Courtyard Blocks',
+      image: '/images/cafe-courtyard.jpg',
       finish: 'Tumbled natural hand-dressed',
       thickness: '50mm – 80mm cube blocks',
-      heatResist: 'Extreme',
-      loadBearing: 'SUV Driveways, Car Porches & Tree Curbs',
-      rate: '₹180 – ₹240 per sq. ft. (Heavy Foundation)',
-      desc: 'Indestructible stone cubes that lock together over compacted aggregate. Can withstand heavy vehicular movement without cracking or shifting.',
+      heatResist: 'Very High',
+      loadBearing: 'Driveways, Car Porches & Tree Curbs',
+      rate: '₹180 – ₹240 per sq. ft. (Heavy Sub-base)',
+      desc: 'Dense stone cubes set over a compacted aggregate base to handle vehicle movement without cracking or shifting.',
     },
     pavers: {
-      name: 'Architectural Stepping Stones',
-      subtitle: 'Floating Lawn Pavers & Modern Gravel Paths',
-      image: 'https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&fit=crop&w=800&q=80',
+      name: 'Garden Stepping Stones',
+      subtitle: 'Lawn Pavers & Gravel Paths',
+      image: '/images/villa-lawn.jpg',
       finish: 'Textured flamed granite or sandstone',
-      thickness: '40mm heavy slab',
+      thickness: '40mm slab',
       heatResist: 'High',
       loadBearing: 'Garden Steppers across Lawn Turf',
       rate: '₹120 – ₹170 per sq. ft.',
-      desc: 'Oversized rectangular stepping stones embedded seamlessly within turf with clean gravel perimeter margins.',
+      desc: 'Wide rectangular stepping stones set flush within turf or pebble borders for dry, mud-free walking paths in every season.',
     },
   };
 
@@ -80,39 +81,38 @@ export default function HardscapePage() {
         </div>
 
         {/* Hero Section */}
-        <section className="bg-forest text-white py-16 lg:py-24 relative overflow-hidden">
+        <section className="bg-forest text-white py-12 sm:py-16 lg:py-24 relative overflow-hidden">
           <div 
             className="absolute inset-0 z-0 bg-cover bg-center opacity-30"
             style={{
-              backgroundImage: `url('https://images.unsplash.com/photo-1590682680695-43b964a3ae17?auto=format&fit=crop&w=2000&q=80')`,
+              backgroundImage: `url('/images/stone-walkway.jpg')`,
             }}
           />
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <FadeIn>
               <div className="max-w-3xl">
                 <span className="kicker text-gold">Civil Precision</span>
-                <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-4 sm:mb-6">
                   Hardscape & Stone Walkways
                 </h1>
-                <p className="text-sage-light text-base sm:text-lg leading-relaxed mb-8">
-                  Civil infrastructure meets botanical serenity. Led by Gaurav Raj (Civil Engineer with high-rise construction experience), 
-                  we construct stone pathways, stepping stones, patio slabs, and retaining borders engineered never to settle, sink, or crack.
+                <p className="text-sage-light text-sm sm:text-base lg:text-lg leading-relaxed mb-6 sm:mb-8">
+                  Stone pathways, patios, and stepping stones that stay level year after year — laid over compacted sub-bases and mortar bedding by our civil engineering team so nothing sinks or cracks after the rains.
                 </p>
 
-                <div className="flex flex-wrap items-center gap-4">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
                   <a
                     href="#stone-explorer"
-                    className="bg-gold hover:bg-gold-hover text-forest-deep px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-lg hover:-translate-y-0.5"
+                    className="bg-gold hover:bg-gold-hover text-forest-deep px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-lg text-center"
                   >
                     Explore Stone Finishes
                   </a>
                   <a
-                    href="https://wa.me/919315359040?text=Hello%20RAJBUILD%20INFRA%2C%20I%20am%20interested%20in%20Hardscape%20and%20Stone%20Walkways."
+                    href={getWhatsAppUrl(`Hello ${SITE_CONFIG.brandName}, I am interested in Hardscape and Stone Walkways.`)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="border border-white/20 hover:border-gold hover:text-gold text-white px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all"
+                    className="border border-white/20 hover:border-gold hover:text-gold text-white px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all text-center"
                   >
-                    WhatsApp Consultation
+                    Get a Quote on WhatsApp
                   </a>
                 </div>
               </div>
@@ -121,59 +121,67 @@ export default function HardscapePage() {
         </section>
 
         {/* Interactive Stone Finishes Explorer */}
-        <section className="py-20 lg:py-24 bg-cream" id="stone-explorer">
+        <section className="py-14 sm:py-20 lg:py-24 bg-cream" id="stone-explorer">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <span className="kicker">Architectural Material Palette</span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-forest mb-4">
+            <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+              <span className="kicker">Material Palette</span>
+              <h2 className="font-serif text-2xl sm:text-4xl font-bold text-forest mb-3 sm:mb-4">
                 Select Your Paving Style
               </h2>
-              <p className="text-gray-600 text-sm sm:text-base">
-                Click across the options below to inspect material specifications, surface finishes, and estimated turnkey rates.
+              <p className="text-gray-600 text-xs sm:text-base">
+                Click across the options below to inspect material specifications, surface finishes, and indicative rates.
               </p>
             </div>
 
             {/* Stone Tabs */}
-            <div className="flex justify-center gap-3 mb-10 flex-wrap">
+            <div className="flex justify-start sm:justify-center gap-2 sm:gap-3 mb-8 sm:mb-10 overflow-x-auto no-scrollbar pb-2 sm:pb-0 px-1">
               <button
+                type="button"
                 onClick={() => setSelectedStone('kandla')}
-                className={`px-5 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all ${
+                className={`inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl font-bold text-[11px] sm:text-xs uppercase tracking-wider transition-all shrink-0 ${
                   selectedStone === 'kandla'
                     ? 'bg-emerald text-white shadow-lg scale-105'
                     : 'bg-white text-forest border border-gray-200 hover:border-emerald'
                 }`}
               >
-                🪨 Kandla Grey Sandstone
+                <Layers className="w-4 h-4" />
+                <span>Kandla Grey Sandstone</span>
               </button>
               <button
+                type="button"
                 onClick={() => setSelectedStone('jodhpur')}
-                className={`px-5 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all ${
+                className={`inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all ${
                   selectedStone === 'jodhpur'
                     ? 'bg-emerald text-white shadow-lg scale-105'
                     : 'bg-white text-forest border border-gray-200 hover:border-emerald'
                 }`}
               >
-                🏛️ Jodhpur Teak Sandstone
+                <Hammer className="w-4 h-4" />
+                <span>Jodhpur Teak Sandstone</span>
               </button>
               <button
+                type="button"
                 onClick={() => setSelectedStone('cobbles')}
-                className={`px-5 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all ${
+                className={`inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all ${
                   selectedStone === 'cobbles'
                     ? 'bg-emerald text-white shadow-lg scale-105'
                     : 'bg-white text-forest border border-gray-200 hover:border-emerald'
                 }`}
               >
-                🧱 Granite & Basalt Cobbles
+                <Ruler className="w-4 h-4" />
+                <span>Granite & Basalt Cobbles</span>
               </button>
               <button
+                type="button"
                 onClick={() => setSelectedStone('pavers')}
-                className={`px-5 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all ${
+                className={`inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all ${
                   selectedStone === 'pavers'
                     ? 'bg-emerald text-white shadow-lg scale-105'
                     : 'bg-white text-forest border border-gray-200 hover:border-emerald'
                 }`}
               >
-                👣 Lawn Stepping Stones
+                <Footprints className="w-4 h-4" />
+                <span>Lawn Stepping Stones</span>
               </button>
             </div>
 
@@ -230,7 +238,7 @@ export default function HardscapePage() {
                       Zero settling guarantee with engineered sub-base.
                     </span>
                     <a
-                      href={`https://wa.me/919315359040?text=Hello%20RAJBUILD%20INFRA%2C%20I%20am%20interested%20in%20${encodeURIComponent(current.name)}%20for%20my%20walkways.`}
+                      href={getWhatsAppUrl(`Hello ${SITE_CONFIG.brandName}, I am interested in ${current.name} for my walkways.`)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bg-emerald hover:bg-forest text-white px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors inline-flex items-center gap-2"
@@ -251,10 +259,10 @@ export default function HardscapePage() {
             <div className="text-center max-w-3xl mx-auto mb-14">
               <span className="kicker">Why Civil Engineering Matters</span>
               <h2 className="font-serif text-3xl sm:text-4xl font-bold text-forest mb-4">
-                The Anatomy of a Non-Sinking Pathway
+                The Anatomy of a Level Pathway
               </h2>
               <p className="text-gray-600 text-sm sm:text-base">
-                Ordinary contractors lay pavers directly on loose mud. Within one rainy season, pavers sink, joints crack, and rainwater pools. Here is how our civil team executes every pathway:
+                To keep walkways and patios level through heavy monsoon rains, every stone surface needs a properly compacted foundation underneath. Here is how our civil team builds every pathway:
               </p>
             </div>
 
@@ -265,7 +273,7 @@ export default function HardscapePage() {
                 </div>
                 <h3 className="font-bold text-base text-forest mb-2">Compacted Earth Base</h3>
                 <p className="text-xs text-gray-600 leading-relaxed">
-                  Excavated 150mm below grade and mechanically compacted using plate vibratory rammers to achieve 95% standard proctor density.
+                  Excavated 150mm below grade and mechanically compacted using plate vibratory rammers for a firm subgrade.
                 </p>
               </div>
 
@@ -275,7 +283,7 @@ export default function HardscapePage() {
                 </div>
                 <h3 className="font-bold text-base text-forest mb-2">Lean Concrete Bedding</h3>
                 <p className="text-xs text-gray-600 leading-relaxed">
-                  A 75mm M10 grade lean concrete or compacted wet-mix macadam layer creating an unyielding structural foundation.
+                  A 75mm M10 grade lean concrete or compacted aggregate sub-base creating a solid foundation.
                 </p>
               </div>
 
@@ -285,7 +293,7 @@ export default function HardscapePage() {
                 </div>
                 <h3 className="font-bold text-base text-forest mb-2">Mortar Setting Bed</h3>
                 <p className="text-xs text-gray-600 leading-relaxed">
-                  Stone slabs individually buttered with polymer-modified cement mortar ensuring 100% full-bed contact with zero hollow sound.
+                  Stone slabs individually set on cement mortar ensuring full-bed contact and stable footing.
                 </p>
               </div>
 
@@ -293,9 +301,9 @@ export default function HardscapePage() {
                 <div className="w-10 h-10 rounded-xl bg-forest text-gold flex items-center justify-center font-bold text-sm mb-4">
                   04
                 </div>
-                <h3 className="font-bold text-base text-forest mb-2">Epoxy / Polymer Grouting</h3>
+                <h3 className="font-bold text-base text-forest mb-2">Weatherproof Grouting</h3>
                 <p className="text-xs text-gray-600 leading-relaxed">
-                  Weatherproof jointing that prevents weed emergence, ant burrowing, and water ingress through stone seams.
+                  Sealed stone joints that prevent weed growth and water seepage between slabs, backed by a 90-day joint and level check.
                 </p>
               </div>
             </div>
@@ -303,29 +311,29 @@ export default function HardscapePage() {
         </section>
 
         {/* Bottom Banner */}
-        <section className="py-16 bg-forest text-white">
+        <section className="py-12 sm:py-16 bg-forest text-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl mx-auto">
-            <span className="kicker text-gold">Build Built to Last</span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-4">
-              Schedule A Hardscape Site Survey
+            <span className="kicker text-gold">Built to Last</span>
+            <h2 className="font-serif text-2xl sm:text-4xl font-bold mb-3 sm:mb-4">
+              Book A Hardscape Site Visit
             </h2>
-            <p className="text-xs sm:text-sm text-sage-light mb-8 leading-relaxed">
-              We inspect soil bearing capacity, check property gradients, and provide material samples directly to your doorstep in Patna.
+            <p className="text-xs sm:text-sm text-sage-light mb-6 sm:mb-8 leading-relaxed">
+              We inspect soil bearing conditions, check property drainage slopes, and bring stone samples to your site in Patna.
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4">
               <Link
                 href="/contact"
-                className="bg-gold hover:bg-gold-hover text-forest-deep px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-lg hover:-translate-y-0.5"
+                className="bg-gold hover:bg-gold-hover text-forest-deep px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-lg text-center"
               >
-                Request Hardscape Survey
+                Book Site Visit
               </Link>
               <a
-                href="https://wa.me/919315359040?text=Hello%20RAJBUILD%20INFRA%2C%20I%20would%20like%20to%20discuss%20Hardscape%20walkways."
+                href={getWhatsAppUrl(`Hello ${SITE_CONFIG.brandName}, I would like to discuss Hardscape walkways.`)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="border border-white/20 hover:border-gold hover:text-gold text-white px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all"
+                className="border border-white/20 hover:border-gold hover:text-gold text-white px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all text-center"
               >
-                WhatsApp +91 93153 59040
+                WhatsApp {SITE_CONFIG.phoneDisplay}
               </a>
             </div>
           </div>

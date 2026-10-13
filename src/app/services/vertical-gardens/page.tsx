@@ -10,6 +10,7 @@ import {
   ArrowRight, CheckCircle2, ChevronRight, Layers, Wind, ThermometerSnowflake, 
   Droplets, ShieldCheck, MessageSquare, Flower 
 } from 'lucide-react';
+import { SITE_CONFIG, getWhatsAppUrl } from '@/config/site';
 
 export default function VerticalGardensPage() {
   const [wallWidth, setWallWidth] = useState<number>(10);
@@ -36,39 +37,38 @@ export default function VerticalGardensPage() {
         </div>
 
         {/* Hero Section */}
-        <section className="bg-forest text-white py-16 lg:py-24 relative overflow-hidden">
+        <section className="bg-forest text-white py-12 sm:py-16 lg:py-24 relative overflow-hidden">
           <div 
             className="absolute inset-0 z-0 bg-cover bg-center opacity-30"
             style={{
-              backgroundImage: `url('https://images.unsplash.com/photo-1534710961216-75c88202f43e?auto=format&fit=crop&w=2000&q=80')`,
+              backgroundImage: `url('/images/vertical-garden.jpg')`,
             }}
           />
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <FadeIn>
               <div className="max-w-3xl">
                 <span className="kicker text-gold">Vertical Urban Green</span>
-                <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-4 sm:mb-6">
                   Vertical Gardens & Bio-Walls in Bihar
                 </h1>
-                <p className="text-sage-light text-base sm:text-lg leading-relaxed mb-8">
-                  Transform blank concrete boundaries, courtyard facades, and rooftop screens into lush, air-purifying living bio-walls. 
-                  Engineered with UV-stabilized modular planters, automatic micro-drip recirculation, and zero root-dampness against building walls.
+                <p className="text-sage-light text-sm sm:text-base lg:text-lg leading-relaxed mb-6 sm:mb-8">
+                  Turn a bare boundary or balcony wall into a living green surface — mounted on a galvanized air-gap frame with built-in drip watering so your interior walls stay dry.
                 </p>
 
-                <div className="flex flex-wrap items-center gap-4">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
                   <a
                     href="#biowall-calculator"
-                    className="bg-gold hover:bg-gold-hover text-forest-deep px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-lg hover:-translate-y-0.5"
+                    className="bg-gold hover:bg-gold-hover text-forest-deep px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-lg text-center"
                   >
                     Calculate Bio-Wall Sizing
                   </a>
                   <a
-                    href="https://wa.me/919315359040?text=Hello%20RAJBUILD%20INFRA%2C%20I%20am%20interested%20in%20a%20Vertical%20Garden%20or%20Green%20Wall."
+                    href={getWhatsAppUrl(`Hello ${SITE_CONFIG.brandName}, I am interested in a Vertical Garden or Bio-Wall.`)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="border border-white/20 hover:border-gold hover:text-gold text-white px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all"
+                    className="border border-white/20 hover:border-gold hover:text-gold text-white px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all text-center"
                   >
-                    WhatsApp Consultation
+                    Get a Quote on WhatsApp
                   </a>
                 </div>
               </div>
@@ -77,21 +77,21 @@ export default function VerticalGardensPage() {
         </section>
 
         {/* Interactive Bio-Wall Sizing & Impact Calculator */}
-        <section className="py-20 lg:py-24 bg-cream" id="biowall-calculator">
+        <section className="py-14 sm:py-20 lg:py-24 bg-cream" id="biowall-calculator">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-12">
+            <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
               <span className="kicker">Interactive Dimension Estimator</span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-forest mb-4">
+              <h2 className="font-serif text-2xl sm:text-4xl font-bold text-forest mb-3 sm:mb-4">
                 Calculate Your Green Wall Scale
               </h2>
-              <p className="text-gray-600 text-sm sm:text-base">
+              <p className="text-gray-600 text-xs sm:text-base">
                 Input your wall width and height to see plant capacity, thermal cooling benefits, and approximate investment.
               </p>
             </div>
 
             <div className="bg-white rounded-3xl border border-gray-200 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 max-w-5xl mx-auto">
               {/* Controls (6 cols) */}
-              <div className="p-6 sm:p-10 lg:col-span-6 flex flex-col justify-between">
+              <div className="p-5 sm:p-10 lg:col-span-6 flex flex-col justify-between">
                 <div>
                   <div className="mb-6">
                     <div className="flex justify-between items-baseline mb-2">
@@ -193,7 +193,7 @@ export default function VerticalGardensPage() {
                 </div>
 
                 <a
-                  href={`https://wa.me/919315359040?text=Hello%20RAJBUILD%20INFRA%2C%20I%20am%20interested%20in%20a%20Vertical%20Garden%20measuring%20${wallWidth}ft%20x%20${wallHeight}ft%20(${totalSqFt}%20sq%20ft).`}
+                  href={getWhatsAppUrl(`Hello ${SITE_CONFIG.brandName}, I am interested in a Vertical Garden measuring ${wallWidth}ft x ${wallHeight}ft (${totalSqFt} sq ft).`)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full bg-[#25d366] hover:bg-[#1da851] text-white py-3.5 px-4 rounded-xl font-bold text-xs uppercase tracking-wider text-center flex items-center justify-center gap-2 shadow-lg transition-all"
@@ -213,23 +213,23 @@ export default function VerticalGardensPage() {
               <div className="lg:col-span-6">
                 <span className="kicker">Civil Assurance</span>
                 <h2 className="font-serif text-3xl sm:text-4xl font-bold text-forest mb-6">
-                  Zero Wall Dampness Guarantee
+                  Dry Interior Walls by Design
                 </h2>
                 <p className="text-sm text-gray-600 leading-relaxed mb-6">
-                  Many homeowners fear vertical gardens because poor installations cause water seepages into indoor walls.
+                  A vertical garden should never introduce moisture into your building wall. We isolate the planting modules from your masonry with a dedicated steel subframe:
                 </p>
                 <div className="space-y-4 text-xs sm:text-sm text-gray-600">
                   <div className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-emerald shrink-0 mt-0.5" />
-                    <span><strong>Free-Standing Air Gap:</strong> Our galvanized steel frame mounts 50mm away from the building wall, creating continuous air circulation that eliminates any contact moisture.</span>
+                    <span><strong>50mm Free-Standing Air Gap:</strong> Our galvanized steel frame mounts away from the building wall, allowing continuous airflow so moisture never touches your plaster.</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-emerald shrink-0 mt-0.5" />
-                    <span><strong>Integrated Drip Catch Gutters:</strong> Runoff water is intercepted by a bottom catch tray and channeled directly into your storm drain.</span>
+                    <span><strong>Integrated Drip Catch Gutters:</strong> Excess water is caught by a bottom tray and channeled directly into the drain line.</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-emerald shrink-0 mt-0.5" />
-                    <span><strong>UV-Treated Polypropylene Pots:</strong> High-impact virgin polymers that will not crack or become brittle under Bihar’s blazing summer sun.</span>
+                    <span><strong>UV-Stabilized Modular Pots:</strong> Durable polypropylene planters built to handle Bihar’s summer sun, backed by our 90-day plant and drip check.</span>
                   </div>
                 </div>
               </div>
@@ -237,17 +237,17 @@ export default function VerticalGardensPage() {
               <div className="lg:col-span-6">
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-gray-200">
                   <img
-                    src="https://images.unsplash.com/photo-1534710961216-75c88202f43e?auto=format&fit=crop&w=1200&q=80"
-                    alt="Vertical Garden Installation"
+                    src="/images/vertical-garden.jpg"
+                    alt="Vertical garden wall with Philodendron, Syngonium, and fern foliage"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/85 via-transparent to-transparent flex flex-col justify-end p-8 text-white">
                     <span className="text-gold text-xs font-bold uppercase tracking-wider mb-1">
                       Curated Bio-Wall Species
                     </span>
-                    <h3 className="font-serif text-2xl font-bold mb-2">Tropical Air-Purifying Flora</h3>
+                    <h3 className="font-serif text-2xl font-bold mb-2">Hardy Foliage Selection</h3>
                     <p className="text-xs text-sage-light">
-                      Planted with Philodendron Ceylon Gold, Syngonium, Asparagus Fern, and Spider Plants for lush multi-colored foliage year-round.
+                      Planted with Philodendron, Syngonium, Asparagus Fern, and Spider Plants for dense multi-textured greenery year-round.
                     </p>
                   </div>
                 </div>
@@ -257,29 +257,29 @@ export default function VerticalGardensPage() {
         </section>
 
         {/* Bottom Banner */}
-        <section className="py-16 bg-forest text-white">
+        <section className="py-12 sm:py-16 bg-forest text-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl mx-auto">
             <span className="kicker text-gold">Elevate Your Bare Walls</span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-4">
-              Book A Vertical Garden Site Assessment
+            <h2 className="font-serif text-2xl sm:text-4xl font-bold mb-3 sm:mb-4">
+              Book A Vertical Garden Site Visit
             </h2>
-            <p className="text-xs sm:text-sm text-sage-light mb-8 leading-relaxed">
-              We inspect wall structural capacity, water tap points, and sunlight exposure to design a living green wall tailored for your space.
+            <p className="text-xs sm:text-sm text-sage-light mb-6 sm:mb-8 leading-relaxed">
+              We inspect wall structure, water tap points, and sunlight hours to plan a living green wall tailored for your space in Patna.
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4">
               <Link
                 href="/contact"
-                className="bg-gold hover:bg-gold-hover text-forest-deep px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-lg hover:-translate-y-0.5"
+                className="bg-gold hover:bg-gold-hover text-forest-deep px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-lg text-center"
               >
-                Schedule Site Visit
+                Book Site Visit
               </Link>
               <a
-                href="https://wa.me/919315359040?text=Hello%20RAJBUILD%20INFRA%2C%20I%20want%20to%20discuss%20a%20Vertical%20Garden."
+                href={getWhatsAppUrl(`Hello ${SITE_CONFIG.brandName}, I want to discuss a Vertical Garden.`)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="border border-white/20 hover:border-gold hover:text-gold text-white px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all"
+                className="border border-white/20 hover:border-gold hover:text-gold text-white px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all text-center"
               >
-                WhatsApp +91 93153 59040
+                WhatsApp {SITE_CONFIG.phoneDisplay}
               </a>
             </div>
           </div>

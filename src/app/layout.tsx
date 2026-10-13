@@ -1,6 +1,14 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Playfair_Display, Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
+import { SITE_CONFIG } from '@/config/site';
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: '#0a1a12',
+};
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -15,20 +23,27 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: 'EXTERRA LANDSCAPE — Shaping Outdoor Living | Patna, Bihar',
-  description: 'EXTERRA LANDSCAPE: Shaping Outdoor Living. Premier landscape architecture, living lawn development, automated drip irrigation, and outdoor civil execution in Patna, Bihar. Founded by B.Sc Agriculture & Civil Engineering experts.',
-  keywords: 'exterra landscape, shaping outdoor living, landscape design patna, garden contractor bihar, villa landscape design, drip irrigation patna, vertical garden patna, saurabh raj horticulture',
+  metadataBase: new URL(SITE_CONFIG.domain),
+  title: 'EXTERRA Landscape | Garden & Landscape Design in Patna',
+  description:
+    'Garden design, lawns, drip irrigation, stone pathways and vertical gardens in Patna. Transparent pricing with an itemized BOQ. Book a site visit.',
+  keywords:
+    'exterra landscape, garden design patna, landscape design patna, drip irrigation patna, stone pathways patna, vertical garden patna, saurabh raj, gaurav raj',
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
-    title: 'EXTERRA LANDSCAPE — Shaping Outdoor Living',
-    description: 'Bespoke architectural landscape design, climate-resilient plantation, drip irrigation and civil outdoor development in Patna, Bihar.',
-    url: 'https://exterralandscape.com',
-    siteName: 'EXTERRA LANDSCAPE',
+    title: 'EXTERRA Landscape | Garden & Landscape Design in Patna',
+    description:
+      'Garden design, lawns, drip irrigation, stone pathways and vertical gardens in Patna. Transparent pricing with an itemized BOQ. Book a site visit.',
+    url: SITE_CONFIG.domain,
+    siteName: SITE_CONFIG.brandName,
     images: [
       {
         url: '/logo.png',
         width: 1200,
         height: 600,
-        alt: 'EXTERRA LANDSCAPE — Shaping Outdoor Living',
+        alt: 'EXTERRA Landscape — Shaping Outdoor Living in Patna',
       },
     ],
     locale: 'en_IN',

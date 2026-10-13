@@ -10,6 +10,7 @@ import {
   ArrowRight, CheckCircle2, ChevronRight, Trees, Sun, Droplets, 
   Sparkles, ShieldCheck, Flower2, Leaf, MessageSquare 
 } from 'lucide-react';
+import { SITE_CONFIG, getWhatsAppUrl } from '@/config/site';
 
 export default function PlantationPage() {
   const [activeTier, setActiveTier] = useState<'palms' | 'shrubs' | 'groundcovers'>('palms');
@@ -22,14 +23,14 @@ export default function PlantationPage() {
         sun: 'Full Sun',
         water: 'Low - Moderate',
         desc: 'Plumose fronds resembling a fox tail. Highly symmetrical, clean trunk, resistant to high winds and heat.',
-        highlight: 'Luxury Entrance Feature',
+        highlight: 'Villa Entrance Feature',
       },
       {
-        name: 'Plumeria Alba (White Champa)',
+        name: 'Plumeria (Champa)',
         height: '8 – 16 ft',
         sun: 'Full Sun',
         water: 'Low (Drought Hardy)',
-        desc: 'Sculptural branches with intensely fragrant white flowers with yellow centers. Thrives in dry heat.',
+        desc: 'Sculptural branches with fragrant white and yellow blossoms. Thrives in Bihar’s warm climate.',
         highlight: 'Fragrant Evening Blooms',
       },
       {
@@ -37,8 +38,8 @@ export default function PlantationPage() {
         height: '12 – 30 ft',
         sun: 'Full Sun',
         water: 'Low once established',
-        desc: 'Massive steel-blue fan fronds creating an unforgettable architectural focal statement in large villa lawns.',
-        highlight: 'Exotic Focal Specimen',
+        desc: 'Silvery-blue fan fronds creating a striking focal statement in spacious villa and farmhouse lawns.',
+        highlight: 'Focal Specimen Palm',
       },
     ],
     shrubs: [
@@ -48,7 +49,7 @@ export default function PlantationPage() {
         sun: 'Full Sun / Partial Shade',
         water: 'Moderate',
         desc: 'Glossy rounded leaves pruned into crisp geometric balls or dense boundary privacy hedges.',
-        highlight: 'Architectural Topiary',
+        highlight: 'Sculpted Topiary',
       },
       {
         name: 'Tecoma Stans (Yellow Bells)',
@@ -56,14 +57,14 @@ export default function PlantationPage() {
         sun: 'Full Sun',
         water: 'Low',
         desc: 'Prolific golden yellow trumpet-shaped blooms nearly 10 months a year. Attracts butterflies and sunbirds.',
-        highlight: 'Perennial Flowering',
+        highlight: 'Year-Round Flowering',
       },
       {
         name: 'Bougainvillea (Trained Trellis / Bush)',
         height: '4 – 15 ft',
         sun: 'Full Sun',
         water: 'Very Low',
-        desc: 'Spectacular magenta, pink, or white bracts. Thrives on sun-baked boundary walls and terraces.',
+        desc: 'Vibrant magenta, pink, or white bracts. Thrives on sunny boundary walls, pergolas, and terraces.',
         highlight: 'Vibrant Color Wall',
       },
     ],
@@ -73,7 +74,7 @@ export default function PlantationPage() {
         height: '6 – 10 inches',
         sun: 'Shade / Semi-Shade',
         water: 'Moderate',
-        desc: 'Deep emerald ribbon-like tufts that frame stone walkways and thrive under dense tree canopies.',
+        desc: 'Deep green ribbon-like tufts that frame stone walkways and thrive under tree canopies.',
         highlight: 'Shade Border Lining',
       },
       {
@@ -81,7 +82,7 @@ export default function PlantationPage() {
         height: '4 – 8 inches',
         sun: 'Full Sun',
         water: 'Low',
-        desc: 'Rapid ground cover that suffocates weeds and produces cheerful golden star flowers continuously.',
+        desc: 'Dense groundcover that suppresses weeds and produces golden star flowers throughout the year.',
         highlight: 'Weed Suppression',
       },
       {
@@ -89,7 +90,7 @@ export default function PlantationPage() {
         height: '1.5 – 2.5 ft',
         sun: 'Partial to Full Sun',
         water: 'Moderate',
-        desc: 'Architectural straps with pure white spidery blossoms. Exceptional moisture resilience in monsoons.',
+        desc: 'Clean strap leaves with white spidery blossoms and strong moisture resilience in monsoons.',
         highlight: 'Border Accent',
       },
     ],
@@ -112,40 +113,38 @@ export default function PlantationPage() {
         </div>
 
         {/* Hero Section */}
-        <section className="bg-forest text-white py-16 lg:py-24 relative overflow-hidden">
+        <section className="bg-forest text-white py-12 sm:py-16 lg:py-24 relative overflow-hidden">
           <div 
             className="absolute inset-0 z-0 bg-cover bg-center opacity-30"
             style={{
-              backgroundImage: `url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=2000&q=80')`,
+              backgroundImage: `url('/images/plantation-canopy.jpg')`,
             }}
           />
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <FadeIn>
               <div className="max-w-3xl">
                 <span className="kicker text-gold">Botanical Curation</span>
-                <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-4 sm:mb-6">
                   Plantation & Canopy Planning
                 </h1>
-                <p className="text-sage-light text-base sm:text-lg leading-relaxed mb-8">
-                  Plants selected by horticulture scientists, not random nursery guesswork. 
-                  We structure your garden with multi-tiered canopies — framing architectural angles, 
-                  shielding harsh western sun, and delivering year-round flowering sequences.
+                <p className="text-sage-light text-sm sm:text-base lg:text-lg leading-relaxed mb-6 sm:mb-8">
+                  Shade where you need it, privacy along boundary walls, and flowering plants that bloom across seasons — chosen by a B.Sc Agriculture graduate for your soil and sunlight hours.
                 </p>
 
-                <div className="flex flex-wrap items-center gap-4">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
                   <a
                     href="#palette-explorer"
-                    className="bg-gold hover:bg-gold-hover text-forest-deep px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-lg hover:-translate-y-0.5"
+                    className="bg-gold hover:bg-gold-hover text-forest-deep px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-lg text-center"
                   >
-                    Explore Flora Palette
+                    Explore Plant Palette
                   </a>
                   <a
-                    href="https://wa.me/919315359040?text=Hello%20RAJBUILD%20INFRA%2C%20I%20want%20to%20consult%20on%20Plantation%20selection."
+                    href={getWhatsAppUrl(`Hello ${SITE_CONFIG.brandName}, I want to consult on Plantation & Canopy Planning.`)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="border border-white/20 hover:border-gold hover:text-gold text-white px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all"
+                    className="border border-white/20 hover:border-gold hover:text-gold text-white px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all text-center"
                   >
-                    WhatsApp Consultation
+                    Get a Quote on WhatsApp
                   </a>
                 </div>
               </div>
@@ -154,23 +153,23 @@ export default function PlantationPage() {
         </section>
 
         {/* Interactive Flora Palette Explorer */}
-        <section className="py-20 lg:py-24 bg-cream" id="palette-explorer">
+        <section className="py-14 sm:py-20 lg:py-24 bg-cream" id="palette-explorer">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-12">
+            <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
               <span className="kicker">Curated Plant Palette</span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-forest mb-4">
+              <h2 className="font-serif text-2xl sm:text-4xl font-bold text-forest mb-3 sm:mb-4">
                 Climate-Resilient Species for Bihar
               </h2>
-              <p className="text-gray-600 text-sm sm:text-base">
+              <p className="text-gray-600 text-xs sm:text-base">
                 Click across the canopy layers below to view specimen species that survive extreme summer heat, drought, and winter chill.
               </p>
             </div>
 
             {/* Tabs */}
-            <div className="flex justify-center gap-3 mb-10 flex-wrap">
+            <div className="flex justify-start sm:justify-center gap-2 sm:gap-3 mb-8 sm:mb-10 overflow-x-auto no-scrollbar pb-2 sm:pb-0 px-1">
               <button
                 onClick={() => setActiveTier('palms')}
-                className={`px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2 ${
+                className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-bold text-[11px] sm:text-xs uppercase tracking-wider transition-all flex items-center gap-2 shrink-0 ${
                   activeTier === 'palms'
                     ? 'bg-emerald text-white shadow-lg scale-105'
                     : 'bg-white text-forest border border-gray-200 hover:border-emerald'
@@ -181,7 +180,7 @@ export default function PlantationPage() {
               </button>
               <button
                 onClick={() => setActiveTier('shrubs')}
-                className={`px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2 ${
+                className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-bold text-[11px] sm:text-xs uppercase tracking-wider transition-all flex items-center gap-2 shrink-0 ${
                   activeTier === 'shrubs'
                     ? 'bg-emerald text-white shadow-lg scale-105'
                     : 'bg-white text-forest border border-gray-200 hover:border-emerald'
@@ -192,7 +191,7 @@ export default function PlantationPage() {
               </button>
               <button
                 onClick={() => setActiveTier('groundcovers')}
-                className={`px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2 ${
+                className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-bold text-[11px] sm:text-xs uppercase tracking-wider transition-all flex items-center gap-2 shrink-0 ${
                   activeTier === 'groundcovers'
                     ? 'bg-emerald text-white shadow-lg scale-105'
                     : 'bg-white text-forest border border-gray-200 hover:border-emerald'
@@ -239,7 +238,7 @@ export default function PlantationPage() {
                     </div>
 
                     <a
-                      href={`https://wa.me/919315359040?text=Hello%20RAJBUILD%20INFRA%2C%20I%20am%20interested%20in%20including%20${encodeURIComponent(plant.name)}%20in%20my%20landscape.`}
+                      href={getWhatsAppUrl(`Hello ${SITE_CONFIG.brandName}, I am interested in including ${plant.name} in my landscape.`)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-center gap-2 text-xs font-bold text-emerald hover:text-gold uppercase tracking-wider pt-3 border-t border-gray-100 transition-colors"
@@ -264,10 +263,10 @@ export default function PlantationPage() {
                   The Science of Layered Canopy Design
                 </h2>
                 <p className="text-sm text-gray-600 leading-relaxed mb-6">
-                  Amateur gardeners often plant tall trees randomly in the center of a lawn, blocking sightlines and starving the grass of sunlight.
+                  Placing trees and shrubs at the right distances keeps sightlines open, ensures the lawn underneath receives enough sunlight, and prevents roots from crowding boundary walls.
                 </p>
                 <p className="text-sm text-gray-600 leading-relaxed mb-8">
-                  At <strong>RAJBUILD INFRA</strong>, led by Saurabh Raj (B.Sc Agriculture), every plantation layout follows structural landscape hierarchy:
+                  At <strong>{SITE_CONFIG.brandName}</strong>, led by Saurabh Raj (B.Sc Agriculture), every plantation layout is structured across three height layers:
                 </p>
 
                 <div className="space-y-4">
@@ -276,8 +275,8 @@ export default function PlantationPage() {
                       1
                     </div>
                     <div>
-                      <h4 className="text-sm font-bold text-forest">Upper Overstory (15-30 ft)</h4>
-                      <p className="text-xs text-gray-600">Perimeter palms and shade canopies positioned to shield harsh western afternoon sun.</p>
+                      <h4 className="text-sm font-bold text-forest">Upper Overstory (15–30 ft)</h4>
+                      <p className="text-xs text-gray-600">Perimeter palms and shade trees positioned to filter harsh western afternoon sun.</p>
                     </div>
                   </div>
 
@@ -286,8 +285,8 @@ export default function PlantationPage() {
                       2
                     </div>
                     <div>
-                      <h4 className="text-sm font-bold text-forest">Middle Understory (4-8 ft)</h4>
-                      <p className="text-xs text-gray-600">Flowering shrubs and sculpted hedge screens providing privacy from boundary walls.</p>
+                      <h4 className="text-sm font-bold text-forest">Middle Understory (4–8 ft)</h4>
+                      <p className="text-xs text-gray-600">Flowering shrubs and sculpted hedge screens providing natural privacy along boundaries.</p>
                     </div>
                   </div>
 
@@ -296,8 +295,8 @@ export default function PlantationPage() {
                       3
                     </div>
                     <div>
-                      <h4 className="text-sm font-bold text-forest">Lower Groundcover & Bedding (0-2 ft)</h4>
-                      <p className="text-xs text-gray-600">Dense evergreen ribbons framing stone pathways, locking in soil moisture and suppressing weeds.</p>
+                      <h4 className="text-sm font-bold text-forest">Lower Groundcover & Bedding (0–2 ft)</h4>
+                      <p className="text-xs text-gray-600">Evergreen border ribbons framing stone pathways, retaining soil moisture, and reducing weeds.</p>
                     </div>
                   </div>
                 </div>
@@ -306,17 +305,17 @@ export default function PlantationPage() {
               <div className="lg:col-span-6">
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-gray-200">
                   <img
-                    src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=1200&q=80"
-                    alt="Canopy Planning"
+                    src="/images/plantation-canopy.jpg"
+                    alt="Layered garden planting with palms, flowering shrubs, and border groundcovers"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/80 via-transparent to-transparent flex flex-col justify-end p-8 text-white">
                     <span className="text-gold text-xs font-bold uppercase tracking-wider mb-1">
-                      Botanical Integrity
+                      Botanical Care
                     </span>
-                    <h3 className="font-serif text-2xl font-bold mb-2">100% Certified Nursery Stock</h3>
+                    <h3 className="font-serif text-2xl font-bold mb-2">Quality-Checked Nursery Stock</h3>
                     <p className="text-xs text-sage-light">
-                      Every plant is hand-selected from vetted regional nurseries, pre-treated with organic fungicides, and delivered with healthy rootballs intact.
+                      Every plant is hand-selected from trusted nurseries, root-treated before planting, and covered by our 90-day replacement guarantee under normal care.
                     </p>
                   </div>
                 </div>
@@ -326,29 +325,29 @@ export default function PlantationPage() {
         </section>
 
         {/* Bottom Booking Banner */}
-        <section className="py-16 bg-forest text-white">
+        <section className="py-12 sm:py-16 bg-forest text-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl mx-auto">
             <span className="kicker text-gold">Ready for Thoughtful Plantation?</span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-4">
+            <h2 className="font-serif text-2xl sm:text-4xl font-bold mb-3 sm:mb-4">
               Get A Custom Plant Palette For Your Space
             </h2>
-            <p className="text-xs sm:text-sm text-sage-light mb-8 leading-relaxed">
-              Book a site consultation. We will analyze sunlight exposure across your property and prepare a visual plantation plan with an itemized BOQ.
+            <p className="text-xs sm:text-sm text-sage-light mb-6 sm:mb-8 leading-relaxed">
+              Book a site visit in Patna. We check sunlight hours across your plot and prepare a layered planting plan with an itemized BOQ.
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4">
               <Link
                 href="/contact"
-                className="bg-gold hover:bg-gold-hover text-forest-deep px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-lg hover:-translate-y-0.5"
+                className="bg-gold hover:bg-gold-hover text-forest-deep px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-lg text-center"
               >
-                Schedule Site Inspection
+                Book Site Visit
               </Link>
               <a
-                href="https://wa.me/919315359040?text=Hello%20RAJBUILD%20INFRA%2C%20I%20would%20like%20to%20discuss%20a%20Plantation%20plan%20for%20my%20garden."
+                href={getWhatsAppUrl(`Hello ${SITE_CONFIG.brandName}, I would like to discuss a Plantation plan for my garden.`)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="border border-white/20 hover:border-gold hover:text-gold text-white px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all"
+                className="border border-white/20 hover:border-gold hover:text-gold text-white px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all text-center"
               >
-                WhatsApp +91 93153 59040
+                WhatsApp {SITE_CONFIG.phoneDisplay}
               </a>
             </div>
           </div>
