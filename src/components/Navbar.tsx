@@ -12,6 +12,7 @@ import {
   X,
   ChevronDown,
   Calendar,
+  Mail,
   Sprout,
   Trees,
   Footprints,
@@ -95,6 +96,13 @@ export default function Navbar() {
             <span className="text-white/90 truncate">{SITE_CONFIG.coverageShort}</span>
           </div>
           <div className="flex items-center justify-between sm:justify-end w-full sm:w-auto gap-4 sm:gap-6 text-xs">
+            <a
+              href={`mailto:${SITE_CONFIG.email}`}
+              className="hidden md:flex items-center gap-1.5 hover:text-earth transition-colors"
+            >
+              <Mail className="w-3.5 h-3.5 text-earth shrink-0" />
+              <span>{SITE_CONFIG.email}</span>
+            </a>
             <a
               href={SITE_CONFIG.phoneHref}
               className="flex items-center gap-1.5 hover:text-earth transition-colors"
@@ -389,6 +397,13 @@ export default function Navbar() {
           >
             <Phone className="w-4 h-4" />
             Call {SITE_CONFIG.phoneDisplay}
+          </a>
+          <a
+            href={`mailto:${SITE_CONFIG.email}`}
+            className="w-full border border-white/20 text-white hover:text-earth hover:border-earth py-3 rounded-lg text-xs font-bold uppercase tracking-wider text-center flex items-center justify-center gap-2"
+          >
+            <Mail className="w-4 h-4" />
+            Email {SITE_CONFIG.email}
           </a>
         </div>
       </div>

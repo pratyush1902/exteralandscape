@@ -12,6 +12,7 @@ import {
   Lightbulb,
   Flower2,
   FileSpreadsheet,
+  Sprout,
 } from 'lucide-react';
 import { SITE_CONFIG, getWhatsAppUrl } from '@/config/site';
 
@@ -19,13 +20,24 @@ type PropertyType = 'villa' | 'rooftop' | 'commercial';
 
 interface PropertyConfig {
   name: string;
-  rate: number;
+  baseRate: number;
 }
 
 const propertyTypes: Record<PropertyType, PropertyConfig> = {
-  villa: { name: 'Villa / Bungalow Lawn', rate: 95 },
-  rooftop: { name: 'Rooftop / Terrace Garden', rate: 140 },
-  commercial: { name: 'Cafe / Resort / Farmhouse', rate: 85 },
+  villa: { name: 'Villa / Bungalow Lawn', baseRate: 50 },
+  rooftop: { name: 'Rooftop / Terrace Garden', baseRate: 100 },
+  commercial: { name: 'Cafe / Resort / Farmhouse', baseRate: 45 },
+};
+
+export type GrassType = 'korean' | 'bermuda' | 'selection1';
+
+export const grassOptions: Record<
+  GrassType,
+  { name: string; rate: number; subtitle: string }
+> = {
+  korean: { name: 'Korean Carpet Grass', rate: 45, subtitle: 'Velvet soft, dense luxury turf' },
+  bermuda: { name: 'Bermuda Grass', rate: 35, subtitle: 'High durability & heavy play' },
+  selection1: { name: 'Selection 1 Grass', rate: 30, subtitle: 'Fine-texture emerald all-rounder' },
 };
 
 function formatRoundedRange(lower: number, upper: number): string {
@@ -46,16 +58,22 @@ interface CostEstimatorProps {
 export default function CostEstimator({ isStandalonePage = false }: CostEstimatorProps) {
   const [property, setProperty] = useState<PropertyType>('villa');
   const [area, setArea] = useState<number>(1200);
+  const [lawnChecked, setLawnChecked] = useState<boolean>(true);
+  const [grassType, setGrassType] = useState<GrassType>('korean');
   const [dripChecked, setDripChecked] = useState<boolean>(true);
   const [hardscapeChecked, setHardscapeChecked] = useState<boolean>(true);
   const [lightingChecked, setLightingChecked] = useState<boolean>(false);
   const [greenwallChecked, setGreenwallChecked] = useState<boolean>(false);
 
   const calculation = useMemo(() => {
-    const baseRate = propertyTypes[property].rate;
+    const baseRate = propertyTypes[property].baseRate;
     let total = area * baseRate;
     const selectedFeatures: string[] = [];
 
+    if (lawnChecked) {
+      total += area * grassOptions[grassType].rate;
+      selectedFeatures.push(`Natural Lawn Turf (${grassOptions[grassType].name})`);
+    }
     if (dripChecked) {
       total += area * 25;
       selectedFeatures.push('Drip Irrigation');
@@ -82,7 +100,8 @@ export default function CostEstimator({ isStandalonePage = false }: CostEstimato
       `Hello ${SITE_CONFIG.brandName}, I checked the landscape cost calculator on your website:`,
       `• Property: ${propertyTypes[property].name}`,
       `• Area: ${area.toLocaleString('en-IN')} sq. ft.`,
-      `• Extras: ${selectedFeatures.length > 0 ? selectedFeatures.join(', ') : 'Base Lawn & Plants Only'}`,
+      `• Lawn Option: ${lawnChecked ? grassOptions[grassType].name : 'No Lawn (Plants / Hardscape Only)'}`,
+      `• Extras: ${selectedFeatures.length > 0 ? selectedFeatures.join(', ') : 'Base Site Preparation Only'}`,
       `• Indicative Range: ${cleanRange}`,
       '',
       'I would like to discuss my site and book a visit.',
@@ -92,14 +111,13 @@ export default function CostEstimator({ isStandalonePage = false }: CostEstimato
       lower,
       upper,
       displayRange,
-      featuresList: selectedFeatures.length > 0 ? selectedFeatures.join(', ') : 'Base Lawn & Plants Only',
+      featuresList: selectedFeatures.length > 0 ? selectedFeatures.join(', ') : 'Base Site Preparation Only',
       waUrl: getWhatsAppUrl(waText),
     };
-  }, [property, area, dripChecked, hardscapeChecked, lightingChecked, greenwallChecked]);
+  }, [property, area, lawnChecked, grassType, dripChecked, hardscapeChecked, lightingChecked, greenwallChecked]);
 
   const breakdownItems = useMemo(() => {
     const isRooftop = property === 'rooftop';
-    const isCommercial = property === 'commercial';
 
     const soilItem = isRooftop
       ? {
@@ -113,22 +131,16 @@ export default function CostEstimator({ isStandalonePage = false }: CostEstimato
           note: 'Foundation for healthy roots & monsoon drainage',
         };
 
-    const plantsItem = isRooftop
+    const plantsItem = lawnChecked
       ? {
-          title: '2. Terrace Turf & Shallow-Rooted Plants (30–35%)',
-          desc: 'Selection 1 or Bermuda lawn sods, FRP/lightweight modular planters, Plumeria (Champa), bamboo screens, and hardy ornamental shrubs suited to rooftop wind and sun.',
-          note: 'Quality-checked nursery stock suited for terraces',
-        }
-      : isCommercial
-      ? {
-          title: '2. Turf, Avenue Trees & Hospitality Planting (30–35%)',
-          desc: 'Heavy-wear Bermuda or Korean carpet grass, mature Plumeria (Champa) and Foxtail palms, privacy hedges, and low-maintenance seasonal beds.',
-          note: 'Selected for guest appeal & high foot traffic',
+          title: `2. ${grassOptions[grassType].name} Turf & Curated Plants (30–35% — Included)`,
+          desc: `Natural turf rolls of ${grassOptions[grassType].name} laid over compacted drainage sand, paired with layered palms, flowering shrubs, and perimeter hedges suited to Bihar's climate.`,
+          note: `Selected variety: ${grassOptions[grassType].name} (${grassOptions[grassType].subtitle})`,
         }
       : {
-          title: '2. Turf & Plant Selection (30–35%)',
-          desc: 'Natural lawn turf (Korean Carpet, Bermuda, or Selection 1), mature palms and shade trees, flowering shrubs, and boundary hedges suited to Bihar’s climate.',
-          note: 'Quality-checked nursery stock',
+          title: '2. Curated Plantation & Shrubs Only (Lawn Turf Excluded)',
+          desc: 'Natural turf grass excluded from estimate. Focuses on specimen palms, ornamental shrubs, flower beds, and organic soil dressing.',
+          note: 'Toggle "Natural Lawn Grass Turf" above to add lawn turf to your estimate',
         };
 
     const hardscapeItem = hardscapeChecked
@@ -267,6 +279,69 @@ export default function CostEstimator({ isStandalonePage = false }: CostEstimato
                     3. Select Optional Extras
                   </label>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {/* Natural Lawn Option Card (Featured Full Width on Mobile & Tablet/Desktop) */}
+                    <div
+                      className={`p-3.5 rounded-xl border transition-all sm:col-span-2 ${
+                        lawnChecked
+                          ? 'border-forest/50 bg-[#f4f8f5] shadow-sm'
+                          : 'border-gray-200 bg-white hover:border-forest/30'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <label className="flex items-center gap-3 cursor-pointer select-none">
+                          <input
+                            type="checkbox"
+                            checked={lawnChecked}
+                            onChange={(e) => setLawnChecked(e.target.checked)}
+                            className="w-4 h-4 accent-forest rounded cursor-pointer"
+                          />
+                          <Sprout className="w-4 h-4 text-emerald shrink-0" />
+                          <span className="text-xs font-bold text-dark">
+                            Natural Lawn Grass Turf
+                          </span>
+                        </label>
+                        {lawnChecked && (
+                          <span className="text-[10px] font-bold text-emerald uppercase tracking-wider bg-emerald/10 border border-emerald/20 px-2.5 py-0.5 rounded-full">
+                            {grassOptions[grassType].name}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Interactive Grass Variety Selector Tabs */}
+                      {lawnChecked && (
+                        <div className="mt-3 pt-3 border-t border-forest/10">
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-[11px] font-semibold text-gray-500">
+                              Grass Variety:
+                            </span>
+                            <span className="text-[10px] text-earth font-medium">
+                              {grassOptions[grassType].subtitle}
+                            </span>
+                          </div>
+                          <div className="grid grid-cols-3 gap-1.5 sm:gap-2">
+                            {(['korean', 'bermuda', 'selection1'] as const).map((g) => (
+                              <button
+                                key={g}
+                                type="button"
+                                onClick={() => setGrassType(g)}
+                                className={`px-2 py-1.5 rounded-lg text-[10px] sm:text-[11px] font-bold uppercase tracking-wider transition-all text-center ${
+                                  grassType === g
+                                    ? 'bg-forest text-white shadow-sm ring-2 ring-forest/20'
+                                    : 'bg-white text-forest border border-gray-200 hover:border-forest/40'
+                                }`}
+                              >
+                                {g === 'korean'
+                                  ? 'Korean Carpet'
+                                  : g === 'bermuda'
+                                  ? 'Bermuda'
+                                  : 'Selection 1'}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
                     <label className="flex items-center gap-3 p-3 rounded-lg border border-gray-200 bg-white hover:border-forest cursor-pointer transition-colors">
                       <input
                         type="checkbox"
@@ -345,6 +420,12 @@ export default function CostEstimator({ isStandalonePage = false }: CostEstimato
                   <div className="flex justify-between">
                     <span>Target Area:</span>
                     <span className="text-white font-semibold">{area.toLocaleString('en-IN')} sq. ft.</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Lawn Option:</span>
+                    <span className="text-white font-semibold">
+                      {lawnChecked ? grassOptions[grassType].name : 'Excluded'}
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span>Selected Extras:</span>
