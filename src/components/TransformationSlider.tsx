@@ -60,17 +60,24 @@ export default function TransformationSlider() {
               <div
                 className="absolute inset-0 bg-cover bg-center"
                 style={{
-                  backgroundImage: `url('/images/villa-lawn.jpg')`,
+                  backgroundImage: `url('/images/after-transformed-plot.jpg')`,
                 }}
               />
 
               {/* Before Image (Foreground Clipped) */}
               <div
-                className="absolute inset-0 bg-cover bg-center border-r-4 border-earth z-10"
+                className="absolute inset-0 bg-cover bg-center z-10"
                 style={{
-                  width: `${sliderPos}%`,
+                  clipPath: `inset(0 ${100 - sliderPos}% 0 0)`,
+                  WebkitClipPath: `inset(0 ${100 - sliderPos}% 0 0)`,
                   backgroundImage: `url('/images/before-raw-plot.jpg')`,
                 }}
+              />
+
+              {/* Divider Line */}
+              <div
+                className="absolute top-0 bottom-0 w-1 bg-earth shadow-lg z-20 pointer-events-none -translate-x-1/2"
+                style={{ left: `${sliderPos}%` }}
               />
 
               {/* Badges */}
